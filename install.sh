@@ -19,7 +19,8 @@ then
 fi
 
 cp -r $HOME/tmux-config $HOME/.tmux
-ln -s $HOME/.tmux/.tmux.conf $HOME/.tmux.conf
+#ln -s $HOME/.tmux/.tmux.conf $HOME/.tmux.conf
+ln -s $HOME/.tmux/.tmux.conf.mine $HOME/.tmux.conf
 
 cd ~/.tmux && git submodule init && git submodule update
 
