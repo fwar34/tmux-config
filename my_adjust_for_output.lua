@@ -6,4 +6,4 @@ io.input(io.stdin)
 local out = io.read()
 -- local out = "2065/7919MB [||        ] 28.5% 0.46 0.60 0.59"
 local mem, cpu = out:match("(%d*MB)[%s%[%]|]*(%d+%.%d%%)")
-print(mem, cpu)
+print(mem, " ", cpu)
