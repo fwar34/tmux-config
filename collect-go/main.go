@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	fmt.Println(collect.Memory())
+	fmt.Println(collect.Memory(), collect.Cpu())
 }
