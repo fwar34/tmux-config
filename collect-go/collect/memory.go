@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
-	// "strconv"
+	"strconv"
 	"strings"
 )
 
@@ -16,14 +16,11 @@ const (
 )
 
 func value(str *string) uint64 {
-	fmt.Println(*str)
-	// num, err := strconv.ParseUint(strings.ReplaceAll(strings.ReplaceAll(*str, " ", ""), "kB\n", ""), 10, 64)
-// println(strings.ReplaceAll(strings.ReplaceAll(*str, " ", ""), "kB\n", ""))
-	// if err != nil {
-	// 	panic(err)
-	// }
-	// return num
-	return 0
+	num, err := strconv.ParseUint(strings.ReplaceAll(strings.ReplaceAll(*str, " ", ""), "kB\n", ""), 10, 64)
+	if err != nil {
+		panic(err)
+	}
+	return num
 }
 
 func convert(num uint64, from int32, to int32) uint64 {
@@ -33,12 +30,12 @@ func convert(num uint64, from int32, to int32) uint64 {
 	return num
 }
 
-func Memory() (uint64, error) {
+func Memory() string {
 	var total_mem uint64
 	var used_mem uint64
 	file, err := os.Open("/proc/meminfo")
 	if err != nil {
-		return 0, err
+		panic(err)
 	}
 	defer file.Close()
 
@@ -52,7 +49,7 @@ func Memory() (uint64, error) {
 		switch strs[0] {
 		case "MemTotal":
 			total_mem = value(&strs[1])
-		case "FreeMem":
+		case "MemFree":
 			used_mem = total_mem - value(&strs[1])
 		case "Shmem":
 			used_mem += value(&strs[1])
@@ -61,5 +58,5 @@ func Memory() (uint64, error) {
 		}
 	}
 
-	return convert(used_mem, KILOBYTES, MEGABYTES), nil
+	return fmt.Sprintf("%dMB/%dMB", convert(used_mem, KILOBYTES, MEGABYTES), convert(total_mem, KILOBYTES, MEGABYTES))
 }
