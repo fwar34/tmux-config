@@ -5,25 +5,25 @@
 
 #!/bin/bash
 
-trap exit ERR
-if [ -d $HOME/.tmux  ]
-then
-    echo .tmux already exist
-    mv $HOME/.tmux $HOME/.tmux.bak
-fi
+# trap exit ERR
+# if [ -d $HOME/.tmux  ]
+# then
+#     echo .tmux already exist
+#     mv $HOME/.tmux $HOME/.tmux.bak
+# fi
 
-if [ -e $HOME/.tmux.conf  ]
-then
-    echo .tmux.conf already exist
-    mv $HOME/.tmux.conf $HOME/.tmux.conf.bak
-fi
+# if [ -e $HOME/.tmux.conf  ]
+# then
+#     echo .tmux.conf already exist
+#     mv $HOME/.tmux.conf $HOME/.tmux.conf.bak
+# fi
 
-cp -r $HOME/tmux-config $HOME/.tmux
+# cp -r $HOME/tmux-config $HOME/.tmux
 #ln -s $HOME/.tmux/.tmux.conf $HOME/.tmux.conf
-ln -sf $HOME/.tmux/.tmux.mine.conf $HOME/.tmux.conf
+ln -sf $HOME/mine/tmux-config/.tmux.mine.conf $HOME/.tmux.conf
 
-cd ~/.tmux && git submodule init && git submodule update
+# cd ~/.tmux && git submodule init && git submodule update
 
-cd ~/.tmux/vendor/tmux-mem-cpu-load && cmake . && make && sudo make install
+cd ~/mine/tmux-config/vendor/tmux-mem-cpu-load && cmake . && make && sudo make install
 
 tmux source-file ~/.tmux.conf
