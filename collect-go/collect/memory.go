@@ -34,9 +34,7 @@ func Memory() string {
 	var total_mem uint64
 	var used_mem uint64
 	file, err := os.Open("/proc/meminfo")
-	if err != nil {
-		panic(err)
-	}
+	Check(&err)
 	defer file.Close()
 
 	reader := bufio.NewReader(file)

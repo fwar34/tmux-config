@@ -25,5 +25,6 @@ ln -sf $HOME/mine/tmux-config/.tmux.mine.conf $HOME/.tmux.conf
 # cd ~/.tmux && git submodule init && git submodule update
 
 cd ~/mine/tmux-config/vendor/tmux-mem-cpu-load && cmake . && make && sudo make install
+cd ~/mine/tmux-config/collect-go && sudo make install
 
 tmux source-file ~/.tmux.conf
