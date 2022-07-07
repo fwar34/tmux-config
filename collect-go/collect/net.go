@@ -14,15 +14,17 @@ func Net(device string) string {
 	Check(&err)
 
 	reader := bufio.NewReader(file)
-	var last_send uint64 = 0
-	var last_recv uint64 = 0
-	var now_send uint64 = 0
-	var now_recv uint64 = 0
+	var (
+		last_send uint64 = 0
+		last_recv uint64 = 0
+		now_send  uint64 = 0
+		now_recv  uint64 = 0
+	)
 	for {
 		str, err := reader.ReadString('\n')
 		Check(&err)
 		fields := strings.Fields(str)
-		if fields[0] == device+":" {
+		if len(fields) > 0 && fields[0] == device+":" {
 			last_recv, err = strconv.ParseUint(fields[1], 10, 64)
 			Check(&err)
 			last_send, err = strconv.ParseUint(fields[9], 10, 64)
