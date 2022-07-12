@@ -20,7 +20,7 @@
 
 # cp -r $HOME/tmux-config $HOME/.tmux
 #ln -s $HOME/.tmux/.tmux.conf $HOME/.tmux.conf
-ln -sf $HOME/mine/tmux-config/.tmux.mine.conf $HOME/.tmux.conf
+ln -sf $HOME/mine/tmux-config/tmux.mine.conf $HOME/.tmux.conf
 
 # cd ~/.tmux && git submodule init && git submodule update
 
