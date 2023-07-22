@@ -20,11 +20,13 @@
 
 # cp -r $HOME/tmux-config $HOME/.tmux
 #ln -s $HOME/.tmux/.tmux.conf $HOME/.tmux.conf
-ln -sf $HOME/mine/tmux-config/tmux.mine.conf $HOME/.tmux.conf
+#ln -sf $HOME/mine/tmux-config/tmux.mine.conf $HOME/.tmux.conf
+ln -sf $PWD/tmux.mine.conf $HOME/.tmux.conf
+sudo cp $PWD/my_adjust_for_output.lua /usr/local/bin 
 
 # cd ~/.tmux && git submodule init && git submodule update
 
 #cd ~/mine/tmux-config/vendor/tmux-mem-cpu-load && cmake . && make && sudo make install
-cd ~/mine/tmux-config/collect-go && make install
+cd collect-go && make install
 
 tmux source-file ~/.tmux.conf
