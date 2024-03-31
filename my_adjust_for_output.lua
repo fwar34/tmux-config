@@ -12,6 +12,9 @@ local temp = function ()
         local t = io.popen('sensors')
         local output = t:read('*all')
         local temp = output:match("Package id 0:%s*+(%d*%.*%d*).*")
+        if not temp then
+            return nil
+        end
         return temp .. ' °C'
     end
 end
